@@ -18,10 +18,6 @@ describe('Forgot', () => {
     
     describe('Elements-displayed', () => {
         
-        it('Redirect-to-login-page', () => {
-            expect($(sel.loginbtn)).toBeDisplayed()
-        }) 
-
         it('Logo', () => {
             expect($(sel.loginlogo)).toBeDisplayed()
         })
@@ -32,7 +28,8 @@ describe('Forgot', () => {
 
         it('Remind-Password-bitton-display', () => {
             expect($(sel.reminderPasswordBtn)).toBeDisplayed()
-        })    
+        }) 
+           
     })
     
     describe('Elements-values', () => {
@@ -44,17 +41,13 @@ describe('Forgot', () => {
         it('Remind-password-button', () => {
             expect($(sel.reminderPasswordBtn)).toHaveText(exp.remindBtnName)
         })
+
     })
 
     describe('Functionality', () => {
 
-        it('Remind-Password-button-redirect', () => {
-            browser.url('/');
-            expect(browser).toHaveUrl(exp.homePageUrl)
-            let clickBtn = $(sel.forgotBtn);
-            expect(clickBtn).toHaveText(exp.remindBtnName)
-            clickBtn.click();
-            expect(browser).toHaveUrl(exp.forgotPageUrl)
+        it('Remind-Password-button-redirect-to-Forgot-page', () => {
+            forgot.redirectFromLoginToForgotPage();
         })
     
         it('Remind-Password-page-is-displayed', () => {  
@@ -62,37 +55,23 @@ describe('Forgot', () => {
         })
 
         it('Error-message-appears-if-Email-field-is-empty', () => {
-            $(sel.reminderPasswordBtn).click()
-            expect($(sel.errortext)).toBeDisplayed()
-        })
-
-        it('Error-message-text', () => {
-            expect($(sel.errortext)).toHaveText(exp.errorMsgText)
+            forgot.emptyEmailError();
         })
 
         it('Error-message-disapears-on-input-in-Email-field', () => {
-            $(sel.emailField).setValue('a')
-            $(sel.errortext).waitForDisplayed({ reverse: true})
+            forgot.errorMessageDisappears(sel.emailField, sel.errortext)           
         })
 
         it('Error-message-appears-if-Email-is-incorrect', () => {  
-            browser.url('/forgot');          
-            $(sel.emailField).setValue(exp.incorrectEmail)
-            $(sel.reminderPasswordBtn).click()
-            expect($(sel.errortext)).toBeDisplayed()
-            expect($(sel.errortext)).toHaveText(exp.incorrectEmailText)
+           forgot.incorrectEmailError();
         })
 
         it('Success-message-appears-if-Email-is-correct', () => {  
-            browser.url('/forgot');          
-            $(sel.emailField).setValue(exp.correctEmail)
-            $(sel.reminderPasswordBtn).click()
-            expect($(sel.errortext)).toBeDisplayed()
-            expect($(sel.errortext)).toHaveText(exp.correctEmailText)
+            forgot.successMessage();
         })
 
          it('User-is-redirected-to-Home-in-3-sec-after-the-password-reminder-was-sent.', () => {        
-            expect(browser).toHaveUrl(exp.homePageUrl), {wait: 3100,}          
+            forgot.successRedirect    
         }) 
 
     })

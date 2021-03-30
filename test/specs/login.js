@@ -39,7 +39,7 @@ describe('Login', () => {
         })
 
         it('Remind-Password-link-is-display', () => {
-            expect($(selectors.passwordLink)).toBeDisplayed()
+            expect($(selectors.btnForgot)).toBeDisplayed()
         })    
     
     })
@@ -59,7 +59,7 @@ describe('Login', () => {
         })
     
         it('Remind-password-link', () => {
-            expect($(selectors.passwordLink)).toHaveText(expected.remindPasswordName)
+            expect($(selectors.btnForgot)).toHaveText(expected.remindPasswordName)
         })    
     })
 

@@ -3,7 +3,8 @@ export default {
     logo: '.login-logo',
     emailField: '#username',
     passwordField: '#pass',
-    passwordLink: '#btn-forgot',
+    btnForgot: '#btn-forgot',
     btnLogin: '#btn-login',
     errorMessage: '#error-text',
+    loginPage: '#login-page',
 };

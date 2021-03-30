@@ -7,8 +7,11 @@ describe('Header', () => {
 
     describe('Elements-displayed', () => {
 
+        before(() => {
+            header.openPage();
+        })
+
         it('Header', () => {
-            browser.url('/')
             expect($(sel.headerPage)).toBeDisplayed()
         })
     
@@ -24,8 +27,7 @@ describe('Header', () => {
     describe('Functionality', () => {
 
         it('Ratings-button-redirect', () => {
-            $(sel.ratingbtn).click()
-            expect(browser).toHaveUrl(exp.ratingPageUrl)
+            header.btnRedirect(sel.ratingbtn, exp.ratingPageUrl);
         })
     
         it('Rating-page-is-displayed', () => {  
@@ -37,8 +39,7 @@ describe('Header', () => {
         })
 
         it('Back-to-Login-redirects', () => {
-            $(sel.backToLoginPageBtn).click()
-            expect(browser).toHaveUrl(exp.loginPageUrl)
+            header.btnRedirect(sel.backToLoginPageBtn, exp.loginPageUrl)
         })
 
         it('Login-page-is-displayed', () => {
@@ -46,8 +47,7 @@ describe('Header', () => {
         })
 
         it('Public-Game-button-redirect', () => {
-            $(sel.publicGameBtn).click()
-            expect(browser).toHaveUrl(exp.publicGamePageUrl)
+            header.btnRedirect(sel.publicGameBtn, exp.publicGamePageUrl)
         })
     
         it('Public-game-page-is-displayed', () => {  
@@ -59,8 +59,7 @@ describe('Header', () => {
         })
 
         it('Back-to-Login-redirects', () => {
-            $(sel.backToLoginPageBtn).click()
-            expect(browser).toHaveUrl(exp.loginPageUrl)
+            header.btnRedirect(sel.backToLoginPageBtn, exp.loginPageUrl)
         })
 
         it('Login-page-is-displayed', () => {

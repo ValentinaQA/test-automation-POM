@@ -1,13 +1,22 @@
 import sel from '../selectors/footer.sel';
 import exp from '../expected/footer.exp';
+import footer from '../pages/footer.page'
 
 describe('Footer', () => {
 
     describe('Elements-displayed', () => {
 
-        it('Lanuage-section', () => {
+        before(() => {
+            footer.openPage();
+        })
+
+        it('Footer', () => {
+            expect($(sel.footer)).toBeDisplayed()
+        })  
+
+        it('Footer-links', () => {
             browser.url('/')
-            expect($(sel.lanuageLink)).toBeDisplayed()
+            expect($(sel.footerLinks)).toBeDisplayed()
         })  
         
         it('Copyright-text', () => {
